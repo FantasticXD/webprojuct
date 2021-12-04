@@ -9,6 +9,14 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>regist</servlet-name>
-        <url-pattern>/regist</url-pattern>
+        <url-pattern>/registServlet</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>login</servlet-name>
+        <servlet-class>com.xfq.web.LoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/loginServlet</url-pattern>
     </servlet-mapping>
 </web-app>
