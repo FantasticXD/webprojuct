@@ -8,6 +8,18 @@
     <script>
 
         $(function () {
+            $("#username").blur(function () {
+                $.getJSON("${basePath}UserServlet","action=ajaxExistUsername&username="+this.value,function (data) {
+                    if (data.existUsername){
+                        $("span.errorMsg").text("用户名不可用");
+                    }else $("span.errorMsg").text("用户名可用");
+                });
+            });
+
+            $("#code_img").click(function () {
+                this.src="${basePath}/kaptcha.jpg?d="+new Date();
+            });
+
             var pet = /^\w{5,12}$/;
 
             var emailPatt = /^[a-z\d]+(\.[a-z\d]+)*@([\da-z](-[\da-z])?)+(\.{1,2}[a-z]+)+$/;
@@ -79,7 +91,10 @@
             <div class="login_box">
                 <div class="tit">
                     <h1>注册小番茄协会会员</h1>
-                    <span class="errorMsg"><%=request.getAttribute("msg")==null? "":request.getAttribute("msg")%></span>
+                    <span class="errorMsg">
+<%--                        <%=request.getAttribute("msg")==null? "":request.getAttribute("msg")%>--%>
+                        ${requestScope.msg}
+                    </span>
                 </div>
                 <div class="form">
                     <form action="UserServlet" method="post">
@@ -87,20 +102,20 @@
                         <label>用户名称：</label>
                         <input class="itxt" type="text" placeholder="请输入用户名" autocomplete="off" tabindex="1"
                                name="username" id="username"
-                        value="<%=request.getAttribute("username")==null? "":request.getAttribute("username")%>"
+                        value="${requestScope.username}"
                         />
                         <br/>
                         <br/>
                         <label>用户密码：</label>
                         <input class="itxt" type="password" placeholder="请输入密码" autocomplete="off" tabindex="1"
                                name="password" id="password"
-                               value="<%=request.getAttribute("password")==null? "":request.getAttribute("password")%>" />
+                               value="${requestScope.password}" />
                         <br/>
                         <br/>
                         <label>确认密码：</label>
                         <input class="itxt" type="password" placeholder="确认密码" autocomplete="off" tabindex="1"
                                name="repwd" id="repwd"
-                        value="<%=request.getAttribute("password")==null? "":request.getAttribute("password")%>"
+                        value="${requestScope.password}"
 
                         />
                         <br/>
@@ -108,13 +123,13 @@
                         <label>电子邮件：</label>
                         <input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1"
                                name="email" id="email"
-                               value="<%=request.getAttribute("email")==null? "":request.getAttribute("email")%>"
+                               value="${requestScope.email}"
                         />
                         <br/>
                         <br/>
                         <label>验证码：</label>
-                        <input class="itxt" type="text" style="width: 150px;" id="code" name="code"/>
-                        <img alt="" src="static/img/code.bmp" style="float: right; margin-right: 40px">
+                        <input class="itxt" type="text" style="width: 90px;" id="code" name="code"/>
+                        <img alt="" id="code_img" src="kaptcha.jpg"  style="float: right; margin-right: 40px;width: 150px;height: 40px" id="code_img">
                         <br/>
                         <br/>
                         <input type="submit" value="注册" id="sub_btn"/>

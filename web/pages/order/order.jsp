@@ -5,6 +5,15 @@
 <meta charset="UTF-8">
 <title>我的订单</title>
 	<%@include file="/pages/common/head.jsp"%>
+	<script>
+		$(function (){
+			$("#logout").click(function (){
+				if(confirm("是否确认退出登录？")){
+				}
+				else return false;
+			});
+		});
+	</script>
 <style type="text/css">
 	h1 {
 		text-align: center;
@@ -13,15 +22,12 @@
 </style>
 </head>
 <body>
-	
 	<div id="header">
 			<img class="logo_img" alt="" src="static/img/logo.gif" >
 			<span class="wel_word">我的订单</span>
 		<%@include file="/pages/common/login_success_menu.jsp"%>
 	</div>
-	
 	<div id="main">
-		
 		<table>
 			<tr>
 				<td>日期</td>
@@ -34,15 +40,13 @@
 				<td>90.00</td>
 				<td>未发货</td>
 				<td><a href="#">查看详情</a></td>
-			</tr>	
-			
+			</tr>
 			<tr>
 				<td>2015.04.20</td>
 				<td>20.00</td>
 				<td>已发货</td>
 				<td><a href="#">查看详情</a></td>
-			</tr>	
-			
+			</tr>
 			<tr>
 				<td>2014.01.23</td>
 				<td>190.00</td>
@@ -50,10 +54,7 @@
 				<td><a href="#">查看详情</a></td>
 			</tr>		
 		</table>
-		
-	
 	</div>
-
 	<%@include file="/pages/common/bottom.jsp"%>
 </body>
 </html>

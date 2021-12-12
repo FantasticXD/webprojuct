@@ -1,5 +1,6 @@
 package com.xfq.service;
 
+import com.xfq.pojo.Page;
 import com.xfq.pojo.User;
 
 public interface UserService {
@@ -15,5 +16,6 @@ public interface UserService {
      * 检查用户名是否可用
      * 返回true表示用户名存在
      * */
-    public boolean existUsername(String username);
+    public boolean existUsername(String userName);
+    public void setUrl(Page page, String url);
 }

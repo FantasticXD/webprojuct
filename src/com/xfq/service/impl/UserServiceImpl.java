@@ -2,6 +2,7 @@ package com.xfq.service.impl;
 
 import com.xfq.dao.UserDao;
 import com.xfq.dao.impl.UserDaoImpl;
+import com.xfq.pojo.Page;
 import com.xfq.pojo.User;
 import com.xfq.service.UserService;
 
@@ -15,7 +16,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User login(User user) {
-        return userdao.QueryUserByUsernameAndPassword(user.getName(),user.getPassword());
+        return userdao.QueryUserByUsernameAndPassword(user.getUsername(),user.getPassword());
     }
 
     @Override
@@ -25,5 +26,10 @@ public class UserServiceImpl implements UserService {
         }
 
         return true;
+    }
+
+    @Override
+    public void setUrl(Page page, String url) {
+        page.setUrl(url);
     }
 }

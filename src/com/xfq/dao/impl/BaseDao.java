@@ -22,10 +22,9 @@ public abstract class BaseDao {
             return querryrunner.update(con,sql,args);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeconnection(con);
+            throw new RuntimeException(e);
         }
-        return -1;
+
     }
     /**
      * 查询一个对象
@@ -37,10 +36,8 @@ public abstract class BaseDao {
           return  querryrunner.query(con,sql,new BeanHandler<T>(clazz),args);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeconnection(con);
+            throw new RuntimeException(e);
         }
-        return null;
     }
     public  <T> List<T> QueryList(Class<T> clazz, String sql, Object ...args){
         Connection con = JDBCUtils.getConnection();
@@ -49,10 +46,8 @@ public abstract class BaseDao {
             return  querryrunner.query(con,sql,new BeanListHandler<T>(clazz),args);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeconnection(con);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 
     public Object QuerySingal(String sql,Object ...args){
@@ -61,9 +56,7 @@ public abstract class BaseDao {
             return  querryrunner.query(con,sql,new ScalarHandler(),args);
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally {
-            JDBCUtils.closeconnection(con);
+            throw new RuntimeException(e);
         }
-        return null;
     }
 }

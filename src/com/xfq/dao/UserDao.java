@@ -6,12 +6,12 @@ public interface UserDao {
     /**
      *根据用户名查用户
      */
-    public User QueryUserByUsername(String name);
+    public User QueryUserByUsername(String username);
 
     /**
      *根据用户名和密码查用户
      */
-    public User QueryUserByUsernameAndPassword(String name,String password);
+    public User QueryUserByUsernameAndPassword(String username,String password);
 
     /**
      *保存用户信息

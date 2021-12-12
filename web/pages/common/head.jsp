@@ -8,15 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 
-    String basepath=request.getScheme()
+    String basePath=request.getScheme()
             +"://"
             +request.getServerName()
             +":"
             +request.getServerPort()
             +request.getContextPath()+
             "/";
+    pageContext.setAttribute("basePath",basePath);
 %>
-
-<base href="<%=basepath%>">
+<base href="<%=basePath%>">
 <link type="text/css" rel="stylesheet" href="static/css/style.css">
 <script src="static/jQuery-3.6.js"></script>
